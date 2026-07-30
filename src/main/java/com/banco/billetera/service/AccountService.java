@@ -39,11 +39,11 @@ public class AccountService {
         accountRepository.save(existSource);
         accountRepository.save(existDestination);
 
-        Transaction transaccion = new Transaction();
-        transaccion.setAmount(amount);
-        transaccion.setSourceAccountId(sourceAccountId);
-        transaccion.setDestinationAccountId(destinationAccountId);
+        Transaction transaction = new Transaction();
+        transaction.setAmount(amount);
+        transaction.setSourceAccountId(sourceAccountId);
+        transaction.setDestinationAccountId(destinationAccountId);
 
-        transactionRepository.save(transaccion);
+        transactionRepository.save(transaction);
     }
 }
