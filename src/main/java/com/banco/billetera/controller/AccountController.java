@@ -1,11 +1,11 @@
 package com.banco.billetera.controller;
 
+import com.banco.billetera.dto.AccountResponse;
 import com.banco.billetera.dto.TransferRequest;
 import com.banco.billetera.service.AccountService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/accounts")
@@ -23,5 +23,11 @@ public class AccountController {
                 request.getDestinationAccountId(),
                 request.getAmount()
         );
+    }
+
+    @GetMapping("/{id}")
+    public AccountResponse getAccount(@PathVariable UUID id){
+        AccountResponse accountResponse= accountService.getAccount(id);
+        return accountResponse;
     }
 }
