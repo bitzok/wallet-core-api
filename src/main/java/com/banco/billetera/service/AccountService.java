@@ -1,5 +1,6 @@
 package com.banco.billetera.service;
 
+import com.banco.billetera.dto.AccountResponse;
 import com.banco.billetera.entity.Account;
 import com.banco.billetera.entity.Transaction;
 import com.banco.billetera.repository.AccountRepository;
@@ -18,6 +19,12 @@ public class AccountService {
     public AccountService(AccountRepository accountRepository, TransactionRepository transactionRepository) {
         this.accountRepository = accountRepository;
         this.transactionRepository = transactionRepository;
+    }
+
+    public AccountResponse getAccount(UUID id){
+        Account account = accountRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("La cuenta no existe"));
+        AccountResponse accountResponse= new AccountResponse(account.getId(),account.getBalance());
+        return accountResponse;
     }
 
     @Transactional
